@@ -4,18 +4,17 @@ interface PropsInterface {
   toggle: boolean;
   position?: string;
   title?: string;
+  onClose?:any;
 }
 
-export default function OffsetBox({ toggle, position, title }: PropsInterface) {
+export default function OffsetBox({ toggle, position, title,onClose }: PropsInterface) {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-   setShow(!show);
+   setShow(toggle);
   }, [toggle]);
 
-  function closeBox() {
-    setShow(false);
-  }
+ 
 
   return (
     <div
@@ -24,7 +23,7 @@ export default function OffsetBox({ toggle, position, title }: PropsInterface) {
       }`}
     >
       {title && <h1>Box</h1>}
-      <button onClick={() => closeBox()}>Close {show ? "Y" : "N"}</button>
+      <button onClick={() => onClose()}>Close {show ? "Y" : "N"}</button>
     </div>
   );
 }
